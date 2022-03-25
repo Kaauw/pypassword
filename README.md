@@ -32,7 +32,7 @@ Return true if password lenght = 16 ... ok
 test_get_md5 (__main__.TestPassword)
 Return true if getpass_md5() is matching regex '^[0-9a-fA-F]{32}$' ... ok
 test_get_sha256 (__main__.TestPassword)
-Return true if getpass_md5() is matching regex '^[A-Fa-f0-9]{64}$' ... ok
+Return true if getpass_sha256() is matching regex '^[A-Fa-f0-9]{64}$' ... ok
 
 ----------------------------------------------------------------------
 Ran 5 tests in 0.005s
