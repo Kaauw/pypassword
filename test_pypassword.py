@@ -37,7 +37,7 @@ class TestPassword(unittest.TestCase):
         self.assertEqual(pw.getpass_md5(), regex_match.group(), "Did not match '^[0-9a-fA-F]{32}$' regex")
 
     def test_get_sha256(self):
-        """Return true if getpass_md5() is matching regex '^[A-Fa-f0-9]{64}$'
+        """Return true if getpass_sha256() is matching regex '^[A-Fa-f0-9]{64}$'
         """
         pw = Password()
         pw.generate()
