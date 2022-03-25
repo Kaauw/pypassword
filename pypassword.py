@@ -1,7 +1,6 @@
 import secrets
 import hashlib
-import unittest
-import re
+from passlib.hash import sha512_crypt
 class Password:
     """
     Password Class
@@ -48,9 +47,9 @@ class Password:
         """Return a dict with password as plain text, md5 and sha256 hashes
 
         Returns:
-            dict: {'plain_text': value, 'md5': value; 'sha256': value}
+            dict: {'plain_text': value, 'md5': value; 'sha256': value, 'sha512_crypt': value}
         """
-        return {'plain_text': self.password, 'md5': self.getpass_md5(), 'sha256': self.getpass_sha256()}
+        return {'plain_text': self.password, 'md5': self.getpass_md5(), 'sha256': self.getpass_sha256(), 'sha512_crypt' : self.getpass_sha512_crypt()}
 
     def getpass_plain_text(self) -> str:
         """Return a string with plain text password
@@ -75,5 +74,13 @@ class Password:
             str: sha256 hashed password
         """
         return hashlib.sha256(self.password.encode()).hexdigest()
+
+    def getpass_sha512_crypt(self) -> str:
+        """Return a string with sha512_crypt ($6$) encrypted password
+
+        Returns:
+            str: sha512 encrypted password
+        """
+        return sha512_crypt.hash(self.password.encode())
 if __name__ == "__main__":
     print(Password.__doc__)

@@ -1,6 +1,7 @@
 import unittest
 import re
 from pypassword import Password
+from passlib.hash import sha512_crypt
 class TestPassword(unittest.TestCase):
 
     def test_default_car(self):
@@ -44,5 +45,11 @@ class TestPassword(unittest.TestCase):
         regex_match = re.match("^[A-Fa-f0-9]{64}$", pw.getpass_sha256())
         self.assertEqual(pw.getpass_sha256(), regex_match.group(), "Did not match '^[A-Fa-f0-9]{64}$' regex")
 
+    def test_get_sha512_crypt(self):
+        """Return true if getpass_sha512_crypt() is correctly encrypted
+        """
+        pw = Password()
+        pw.generate()
+        self.assertTrue(sha512_crypt.identify(pw.getpass_sha512_crypt()), "Is not a sha512 encrypted password")
 if __name__ == "__main__":
     unittest.main(verbosity=2)
